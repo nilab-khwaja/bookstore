@@ -30,7 +30,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [Math magicians] <a name="about-project"></a>
+# 📖 [Bookstore] <a name="about-project"></a>
 
 >
 Bookstore is a simple Book Managment application.
@@ -59,11 +59,6 @@ Bookstore is a simple Book Managment application.
 
 <!-- LIVE DEMO -->
  
- ## 🚀 Live Demo <a name="live-demo"></a>
-
-> Here you can see a live demo of Project
-
-- [Live Demo Link]()
 
 <!-- GETTING STARTED -->
 
