@@ -1,38 +1,44 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addBook } from '../redux/books/booksSlice';
 
-const BookForm = ({ onAddBook }) => {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
+const BookForm = () => {
+  const dispatch = useDispatch();
+  const [newBook, setNewBook] = useState({ title: '', author: '', category: '' });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // create a new book object
-
-    const newBook = {
-      title,
-      author,
-    };
-    // pass the new book to the parent componet
-    onAddBook(newBook);
-    // clear the form inputs
-    setTitle('');
-    setAuthor('');
+  const handleAddBook = () => {
+    dispatch(addBook(newBook));
+    setNewBook({ title: '', author: '', category: '' });
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <input type="text" placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} />
-        <button type="submit">Add Book</button>
+      <h2>Add a New Book</h2>
+      <form>
+        <input
+          type="text"
+          placeholder="Title"
+          value={newBook.title}
+          onChange={(e) => setNewBook({ ...newBook, title: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Author"
+          value={newBook.author}
+          onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Category"
+          value={newBook.category}
+          onChange={(e) => setNewBook({ ...newBook, category: e.target.value })}
+        />
+        <button type="button" onClick={handleAddBook}>
+          Add Book
+        </button>
       </form>
     </div>
   );
-};
-
-BookForm.propTypes = {
-  onAddBook: PropTypes.func.isRequired,
 };
 
 export default BookForm;

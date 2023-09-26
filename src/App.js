@@ -1,7 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Books from './components/Books';
-
 import Navbar from './components/Navbar';
 import Catagories from './components/Catagories';
 
