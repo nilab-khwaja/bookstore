@@ -1,25 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/booksSlice';
+import { removeBookAsync } from '../redux/bookAsyncActions';
 
 const Book = ({ book }) => {
   const dispatch = useDispatch();
 
   const handleRemoveBook = (itemId) => {
-    dispatch(removeBook(itemId));
+    try {
+      dispatch(removeBookAsync(itemId));
+    } catch (error) {
+      console.log('Error in removing the item', error);
+    }
   };
 
   return (
     <li key={book.item_id}>
-      {book.title}
-      {' '}
-      by
-      {book.author}
-      {' '}
-      (
-      {book.category}
-      )
+      <p>
+        Title:
+        {book.title}
+      </p>
+      <p>
+        Author:
+        {book.author}
+      </p>
+      <p>
+        Category:
+        {book.category}
+      </p>
       <button type="button" onClick={() => handleRemoveBook(book.item_id)}>
         Remove
       </button>

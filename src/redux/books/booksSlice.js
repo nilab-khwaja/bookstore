@@ -1,47 +1,55 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
+import { fetchBooks, addBookAsync, removeBookAsync } from '../bookAsyncActions';
 
 const initialState = {
-  books: [
-    {
-      item_id: 'item1',
-      title: 'The Great Gatsby',
-      author: 'John Smith',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item2',
-      title: 'Anna Karenina',
-      author: 'Leo Tolstoy',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item3',
-      title: 'The Selfish Gene',
-      author: 'Richard Dawkins',
-      category: 'Nonfiction',
-    },
-  ],
+  books: [],
+  status: ' ',
+  error: null,
+
 };
 
 const bookSlice = createSlice({
   name: 'book',
   initialState, // Updated initial state
-  reducers: {
-    addBook: (state, action) => {
-      const newBook = {
-        item_id: uuidv4(),
-        ...action.payload,
-      };
-      // add new book to array
-      state.books.push(newBook);
-    },
-    removeBook: (state, action) => {
-      // remove book by its ID
-      state.books = state.books.filter((book) => book.item_id !== action.payload);
-    },
+  reducers: {},
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooks.pending, (state) => {
+        state.status = 'loading';
+      })
+
+      .addCase(fetchBooks.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.books = action.payload;
+      })
+
+      .addCase(fetchBooks.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+
+      .addCase(addBookAsync.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.books.push(action.payload);
+      })
+
+      .addCase(addBookAsync.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+
+      .addCase(removeBookAsync.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.books = state.books.filter((book) => book.item_id !== action.payload);
+      })
+
+      .addCase(removeBookAsync.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
   },
+
 });
 
-export const { addBook, removeBook } = bookSlice.actions;
 export default bookSlice.reducer;
