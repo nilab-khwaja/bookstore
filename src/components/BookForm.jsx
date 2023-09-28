@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../redux/books/booksSlice';
+import { v4 as uuidv4 } from 'uuid';
+import { addBookAsync } from '../redux/bookAsyncActions';
 
 const BookForm = () => {
   const dispatch = useDispatch();
-  const [newBook, setNewBook] = useState({ title: '', author: '', category: '' });
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleAddBook = () => {
-    dispatch(addBook(newBook));
-    setNewBook({ title: '', author: '', category: '' });
+    const newBook = {
+      item_id: uuidv4(),
+      title,
+      category,
+      author,
+    };
+    dispatch(addBookAsync(newBook)); // Dispatch the addBook action with the newBook data
+    setTitle(''); // Clear the title input
+    setAuthor(''); // Clear the author input
+    setCategory(''); // Clear the category input
   };
 
   return (
@@ -18,20 +29,20 @@ const BookForm = () => {
         <input
           type="text"
           placeholder="Title"
-          value={newBook.title}
-          onChange={(e) => setNewBook({ ...newBook, title: e.target.value })}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <input
           type="text"
           placeholder="Author"
-          value={newBook.author}
-          onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
         />
         <input
           type="text"
           placeholder="Category"
-          value={newBook.category}
-          onChange={(e) => setNewBook({ ...newBook, category: e.target.value })}
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
         />
         <button type="button" onClick={handleAddBook}>
           Add Book

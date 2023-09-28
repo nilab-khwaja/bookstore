@@ -1,26 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/booksSlice';
+import { removeBookAsync } from '../redux/bookAsyncActions';
 
 const Book = ({ book }) => {
   const dispatch = useDispatch();
+  const {
+    itemId, title, author, category,
+  } = book;
 
   const handleRemoveBook = (itemId) => {
-    dispatch(removeBook(itemId));
+    dispatch(removeBookAsync(itemId));
   };
 
   return (
-    <li key={book.item_id}>
-      {book.title}
-      {' '}
-      by
-      {book.author}
-      {' '}
-      (
-      {book.category}
-      )
-      <button type="button" onClick={() => handleRemoveBook(book.item_id)}>
+    <li key={itemId}>
+      <p>
+        Title:
+        {title}
+      </p>
+      <p>
+        Author:
+        {author}
+      </p>
+      <p>
+        Category:
+        {category}
+      </p>
+      <button type="button" onClick={() => handleRemoveBook(itemId)}>
         Remove
       </button>
     </li>
@@ -29,7 +36,7 @@ const Book = ({ book }) => {
 
 Book.propTypes = {
   book: PropTypes.shape({
-    item_id: PropTypes.string.isRequired,
+    itemId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,

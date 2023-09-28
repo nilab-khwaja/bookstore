@@ -132,9 +132,9 @@ npm start .
 
 👤 **Author1**
 
-- GitHub: [@nilab-khwaja](https://github.com/githubhandle)
-- Twitter: [@nilab](https://twitter.com/twitterhandle)
-- LinkedIn: @nilab-khwajazada
+- GitHub: [@nilab-khwaja](https://github.com/nilab-khwaja)
+- Twitter: [@nilab](https://x.com/NilabKhwajazada?t=hEkqy2CCNFOIfGtbmD2gLA&s=35)
+- LinkedIn: [@nilab-khwajazada](https://www.linkedin.com/in/nilab-khwajazada)
 
 <!-- FUTURE FEATURES -->
 
