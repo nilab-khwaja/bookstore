@@ -24,38 +24,38 @@ const BookForm = () => {
   };
 
   return (
-    <div className='form'>
-    <div className={styles.container}>
-      <h3>Add a New Book</h3>
-      <form>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        {/* <input
+    <div className="form">
+      <div className={styles.container}>
+        <h3>Add a New Book</h3>
+        <form>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          {/* <input
           type="text"
           placeholder="Author"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
          */}
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
-        </div>
-        <button type="button" onClick={handleAddBook}>
-          Add Book
-        </button>
-      </form>
-    </div>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+          </div>
+          <button type="button" onClick={handleAddBook}>
+            Add Book
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
