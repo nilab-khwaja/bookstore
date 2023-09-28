@@ -3,20 +3,6 @@ import axios from 'axios';
 
 const baseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/BlTIwZp3z9NYtJhv3dq4/books';
 
-// // Function to create a new app
-// async function createNewApp() {
-//   try {
-//     const response = await axios.post(`${baseURL}/apps/`);
-//     const newAppId = response.data; // Assuming the response contains the new app's ID
-//     console.log('New App ID:', newAppId);
-//   } catch (error) {
-//     console.error('Error:', error);
-//   }
-// }
-
-// // Call the function to create a new app
-// createNewApp();
-
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, { rejectWithValue }) => {
   try {
     const response = await axios.get(baseURL);
