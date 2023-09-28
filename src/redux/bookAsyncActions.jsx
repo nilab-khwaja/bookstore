@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const baseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/BlTIwZp3z9NYtJhv3dq4';
+const baseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/BlTIwZp3z9NYtJhv3dq4/books';
 
 // // Function to create a new app
 // async function createNewApp() {
@@ -19,7 +19,7 @@ const baseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/book
 
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/${baseURL}/books`);
+    const response = await axios.get(baseURL);
     const res = response.data;
 
     if (res === '') return [];
@@ -41,7 +41,7 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, { rejec
 
 export const addBookAsync = createAsyncThunk('books/addBook', async (newBook, { rejectWithValue }) => {
   try {
-    const res = await axios.post(`${baseURL}/books`, newBook);
+    const res = await axios.post(baseURL, newBook);
     if (res.status === 201) {
       return newBook;
     }
@@ -51,7 +51,14 @@ export const addBookAsync = createAsyncThunk('books/addBook', async (newBook, { 
   }
 });
 
-export const removeBookAsync = createAsyncThunk('books/removeBook', async (itemId) => {
-  await axios.delete(`${baseURL}/books/${itemId}`);
-  return itemId;
+export const removeBookAsync = createAsyncThunk('books/removeBook', async (itemId, { rejectWithValue }) => {
+  try {
+    const res = await axios.delete(`${baseURL}/${itemId}`);
+    if (res.status === 201) {
+      return itemId;
+    }
+    return rejectWithValue('Failed to remove book');
+  } catch (error) {
+    return rejectWithValue('Failed remove book');
+  }
 });

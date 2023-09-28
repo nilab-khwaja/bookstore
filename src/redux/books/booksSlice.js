@@ -3,7 +3,7 @@ import { fetchBooks, addBookAsync, removeBookAsync } from '../bookAsyncActions';
 
 const initialState = {
   books: [],
-  status: ' ',
+  status: 'idle',
   error: null,
 
 };
@@ -41,7 +41,7 @@ const bookSlice = createSlice({
 
       .addCase(removeBookAsync.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.books = state.books.filter((book) => book.item_id !== action.payload);
+        state.books = state.books.filter((book) => book.itemId !== action.payload);
       })
 
       .addCase(removeBookAsync.rejected, (state, action) => {

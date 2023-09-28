@@ -10,11 +10,7 @@ const Book = ({ book }) => {
   } = book;
 
   const handleRemoveBook = (itemId) => {
-    try {
-      dispatch(removeBookAsync(itemId));
-    } catch (error) {
-      console.log('Error in removing the item', error);
-    }
+    dispatch(removeBookAsync(itemId));
   };
 
   return (
@@ -31,7 +27,7 @@ const Book = ({ book }) => {
         Category:
         {category}
       </p>
-      <button type="button" onClick={() => handleRemoveBook(book.itemId)}>
+      <button type="button" onClick={() => handleRemoveBook(itemId)}>
         Remove
       </button>
     </li>
