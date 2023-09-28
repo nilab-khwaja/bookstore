@@ -15,6 +15,8 @@ const Book = ({ book }) => {
     dispatch(removeBookAsync(itemId));
   };
 
+  const progress = Math.floor(Math.random() * 101);
+
   return (
     <div className="book-list">
       <div className={styles.container}>
@@ -35,7 +37,7 @@ const Book = ({ book }) => {
             <div className="spinner">
               <ProgressBar
                 radius={35}
-                progress={64}
+                progress={progress}
                 strokeWidth={5}
                 strokeColor="#379cf6"
                 trackStrokeWidth={7}
@@ -45,7 +47,10 @@ const Book = ({ book }) => {
                 pointerStrokeColor="indianred"
               />
               <div className="percentage">
-                <h5>64%</h5>
+                <h5>
+                  {progress}
+                  %
+                </h5>
                 <h6>Completed</h6>
               </div>
             </div>
