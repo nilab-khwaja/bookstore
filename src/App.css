@@ -1,3 +1,14 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Slab:wght@300&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+/* .books{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  align-items: center;
+} */
