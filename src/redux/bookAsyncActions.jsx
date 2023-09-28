@@ -17,26 +17,38 @@ const baseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/book
 // // Call the function to create a new app
 // createNewApp();
 
-export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
-  const response = await axios.get('https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/BlTIwZp3z9NYtJhv3dq4/books');
-  const res = response.data;
-  console.log(res);
-  return res;
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, { rejectWithValue }) => {
+  try {
+    const response = await axios.get(`https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/${baseURL}/books`);
+    const res = response.data;
+
+    if (res === '') return [];
+
+    const arrayOfItems = Object.keys(res).map((key) => {
+      const item = res[key][0];
+      return {
+        itemId: key,
+        author: item.author,
+        title: item.title,
+        category: item.category,
+      };
+    });
+    return arrayOfItems;
+  } catch (error) {
+    return rejectWithValue('Failed to fetch books');
+  }
 });
 
-export const addBookAsync = createAsyncThunk('books/addBook', async (newBook) => {
-  const {
-    item_id, title, author, category,
-  } = newBook;
-  const dataToSend = {
-    item_id,
-    title,
-    author,
-    category,
-  };
-  const response = await axios.post(`${baseURL}/books`, dataToSend);
-  const ress = response.data;
-  console.log(ress);
+export const addBookAsync = createAsyncThunk('books/addBook', async (newBook, { rejectWithValue }) => {
+  try {
+    const res = await axios.post(`${baseURL}/books`, newBook);
+    if (res.status === 201) {
+      return newBook;
+    }
+    return rejectWithValue('Failed to add book');
+  } catch (error) {
+    return rejectWithValue('Failed to add book');
+  }
 });
 
 export const removeBookAsync = createAsyncThunk('books/removeBook', async (itemId) => {

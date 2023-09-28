@@ -5,6 +5,9 @@ import { removeBookAsync } from '../redux/bookAsyncActions';
 
 const Book = ({ book }) => {
   const dispatch = useDispatch();
+  const {
+    itemId, title, author, category,
+  } = book;
 
   const handleRemoveBook = (itemId) => {
     try {
@@ -15,20 +18,20 @@ const Book = ({ book }) => {
   };
 
   return (
-    <li key={book.item_id}>
+    <li key={itemId}>
       <p>
         Title:
-        {book.title}
+        {title}
       </p>
       <p>
         Author:
-        {book.author}
+        {author}
       </p>
       <p>
         Category:
-        {book.category}
+        {category}
       </p>
-      <button type="button" onClick={() => handleRemoveBook(book.item_id)}>
+      <button type="button" onClick={() => handleRemoveBook(book.itemId)}>
         Remove
       </button>
     </li>
@@ -37,7 +40,7 @@ const Book = ({ book }) => {
 
 Book.propTypes = {
   book: PropTypes.shape({
-    item_id: PropTypes.string.isRequired,
+    itemId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,

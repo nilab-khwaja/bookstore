@@ -11,12 +11,11 @@ const BookForm = () => {
 
   const handleAddBook = () => {
     const newBook = {
-      item_id: uuidv4(),
+      itemId: uuidv4(),
       title,
       category,
       author,
     };
-
     dispatch(addBookAsync(newBook)); // Dispatch the addBook action with the newBook data
     setTitle(''); // Clear the title input
     setAuthor(''); // Clear the author input

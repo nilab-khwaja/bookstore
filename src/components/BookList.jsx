@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import Book from './Book';
 import { fetchBooks } from '../redux/bookAsyncActions';
 
@@ -25,7 +26,7 @@ const BookList = () => {
         <h2>Book List</h2>
         <ul>
           {books.map((book) => (
-            <Book key={book.item_id} book={book} />
+            <Book key={books.itemId || books.item_id || uuidv4()} book={book} />
           ))}
         </ul>
       </div>
