@@ -24,11 +24,11 @@ const BookForm = () => {
   };
 
   return (
-    <div className="form">
+    <div>
       <div className={styles.container}>
         <h3>Add a New Book</h3>
         <form>
-          <div className="form-group">
+          <div>
             <input
               type="text"
               placeholder="Title"
@@ -43,7 +43,7 @@ const BookForm = () => {
           onChange={(e) => setAuthor(e.target.value)}
         />
          */}
-          <div className="form-group">
+          <div>
             <input
               type="text"
               placeholder="Category"
