@@ -2,7 +2,6 @@
   width: 100%;
   height: 370px;
   overflow-y: scroll;
-  box-shadow: 1px 0 3px rgb(165, 164, 164);
 }
 
 .error {
