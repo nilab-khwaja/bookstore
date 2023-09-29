@@ -3,7 +3,7 @@
 .nav {
   display: flex;
   justify-content: space-between;
-  padding: 10px 11%;
+  padding: 10px 8%;
   font-family: 'Montserrat', sans-serif;
   box-shadow: 1px 0 3px rgb(165, 164, 164);
 }

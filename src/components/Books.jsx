@@ -2,7 +2,7 @@ import BookForm from './BookForm';
 import BookList from './BookList';
 
 const Books = () => (
-  <div className="books">
+  <div className="list-form-section">
     <BookList />
     <BookForm />
   </div>

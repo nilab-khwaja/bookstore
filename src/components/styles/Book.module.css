@@ -6,11 +6,15 @@
 
 .container {
   width: 100%;
-  padding: 2rem 9.188rem 1.625rem 1.688rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+  padding-right: 7rem;
+  padding-left: 2rem;
   border-radius: 4px;
   border: solid 1px #e8e8e8;
   background-color: #fff;
   margin-top: 10px;
+  height: 7rem;
 }
 
 .analytics > div:nth-child(2) button {

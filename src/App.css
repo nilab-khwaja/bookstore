@@ -8,5 +8,10 @@
 
 body {
   height: 100%;
-  padding: 1rem;
+}
+
+.list-form-section {
+  padding-top: 1rem;
+  padding-left: 7rem;
+  padding-right: 7rem;
 }
