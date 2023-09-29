@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addBookAsync } from '../redux/bookAsyncActions';
+import styles from './styles/Form.module.css';
 
 const BookForm = () => {
   const dispatch = useDispatch();
@@ -24,30 +25,37 @@ const BookForm = () => {
 
   return (
     <div>
-      <h2>Add a New Book</h2>
-      <form>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
+      <div className={styles.container}>
+        <h3>Add a New Book</h3>
+        <form>
+          <div>
+            <input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          {/* <input
           type="text"
           placeholder="Author"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
-        <input
-          type="text"
-          placeholder="Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        />
-        <button type="button" onClick={handleAddBook}>
-          Add Book
-        </button>
-      </form>
+         */}
+          <div>
+            <input
+              type="text"
+              placeholder="Category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+          </div>
+          <button type="button" onClick={handleAddBook}>
+            Add Book
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

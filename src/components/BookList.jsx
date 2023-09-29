@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import Book from './Book';
 import { fetchBooks } from '../redux/bookAsyncActions';
+import styles from './styles/Booklist.module.css';
 
 const BookList = () => {
   const books = useSelector((state) => state.books.books);
@@ -22,8 +23,7 @@ const BookList = () => {
     content = <div>Loading...</div>;
   } else if (status === 'succeeded') {
     content = (
-      <div>
-        <h2>Book List</h2>
+      <div className={styles['inner-component']}>
         <ul>
           {books.map((book) => (
             <Book key={books.itemId || books.item_id || uuidv4()} book={book} />

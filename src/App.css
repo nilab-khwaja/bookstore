@@ -1,3 +1,18 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Slab:wght@300&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+}
+
+.list-form-section {
+  padding-top: 1rem;
+  padding-left: 7rem;
+  padding-right: 7rem;
+  background-color: #f5f6fa;
 }
